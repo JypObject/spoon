@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="save*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="create*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="add*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="set*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="modify*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="edit*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="del*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="remove*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="cancel*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="update*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="import*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="exchange*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="sync*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="relate*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="unRelate*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="report*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="reset*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="start*" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="notesOperate" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="notesOperation" propagation="REQUIRES_NEW" rollback-for="Exception"/>
+            <tx:method name="login" propagation="REQUIRED" rollback-for="Exception"/>
+            <tx:method name="stop*" propagation="REQUIRED" rollback-for="Exception"/>
+
+            <!--hibernate4必须配置为开启事务 否则 getCurrentSession()获取不到 -->
+            <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="count*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="check*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="find*" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="list*" propagation="REQUIRED" read-only="true"/>
+
+            <tx:method name="*" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+    <aop:config expose-proxy="true">
+        <!-- 只对业务逻辑层实施事务 -->
+        <aop:pointcut id="txPointcut" expression="execution(* com.huadong.spoon.service.*.*(..))"/>
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+    </aop:config>
+</beans>

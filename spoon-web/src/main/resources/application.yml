@@ -1,0 +1,38 @@
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:ssl/spoon.jks
+    key-store-password: 11111111
+    key-password: 11111111
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-bean-definition-overriding: true
+  messages:
+    encoding: utf-8
+    basename: messages/messages
+  resources:
+    static-locations: classpath:/web
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+
+jwt:
+  tokenHeader: Authorization #JWT存储的请求头
+  secret: mySecret #JWT加解密使用的密钥
+  expiration: 604800 #JWT的超期限时间(60*60*24)
+  tokenHead: Bearer #JWT负载中拿到开头
+
+mybatis:
+  mapper-locations: classpath*:mapping/dialect/**/*.xml
+  config-location: classpath:mybatis-config.xml
+
+logging:
+  config: classpath:logback.xml
+
+rabbitmq:
+  queue:
+    name:
+      gps: gpsQueue
