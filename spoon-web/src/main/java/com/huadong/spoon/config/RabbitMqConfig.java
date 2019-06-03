@@ -53,9 +53,4 @@ public class RabbitMqConfig {
             .with(QueueEnum.QUEUE_GPS.getRouteKey());
     }
 
-    @Bean
-    @RabbitListener(queues = {"spoon.gps", "spoon.toCms"})
-    DataReceiver dataReceiver(){
-        return new DataReceiver();
-    }
 }

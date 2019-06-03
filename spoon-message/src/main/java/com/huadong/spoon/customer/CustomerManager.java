@@ -3,6 +3,7 @@ package com.huadong.spoon.customer;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.huadong.spoon.message.InnerSpoonMessage;
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,7 +71,6 @@ public class CustomerManager {
                 }
             }
         }
-
         registeredList.add(callback);
     }
 
@@ -85,6 +85,10 @@ public class CustomerManager {
         }
         String sMsgType = "" + messageType;
         List<SpoonMessageCustomer> customerList = messageMap.get(sMsgType);
+        if(CollectionUtils.isEmpty(customerList)){
+            LOG.info("No Customer found for message type {}", message.getMessageType());
+            return;
+        }
         for(SpoonMessageCustomer customer : customerList){
             //线程池触发
             EXECUTOR_SERVICE.execute(()->{

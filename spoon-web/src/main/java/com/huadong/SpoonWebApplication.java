@@ -1,7 +1,7 @@
 package com.huadong;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 /**
  * @author jinjinhui
@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpoonWebApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpoonWebApplication.class, args);
+        new SpringApplicationBuilder(SpoonWebApplication.class).listeners(new ApplicationStartingEventListener()).run(args);
 	}
 
 }

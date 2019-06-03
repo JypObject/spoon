@@ -7,6 +7,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 /**
+ * 数据接收器
  * @author jinjinhui
  * @date 2019/5/30
  */
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Component;
 public class DataReceiver {
 
     @RabbitHandler
+    @RabbitListener(queues = {"spoon.toCms"})
     public void received(InnerSpoonMessage message){
         Integer messageSeq = message.getMessageSequence();
         if(SpoonMessageSynchronizer.isSynchronized(String.valueOf(messageSeq))){

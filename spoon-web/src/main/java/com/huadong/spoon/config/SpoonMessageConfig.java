@@ -16,7 +16,6 @@ public class SpoonMessageConfig {
     @Bean
     public CustomerRegistrar customerRegistrar(){
         CustomerRegistrar registrar = new CustomerRegistrar(this.getClass());
-        registrar.doRegistry();
         return registrar;
     }
 }

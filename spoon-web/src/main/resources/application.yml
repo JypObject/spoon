@@ -1,5 +1,5 @@
 server:
-  port: 8443
+  port: 18443
   ssl:
     enabled: true
     key-store: classpath:ssl/spoon.jks
@@ -20,10 +20,10 @@ spring:
       maxFileSize: 10MB
 
 jwt:
-  tokenHeader: Authorization #JWT´æ´¢µÄÇëÇóÍ·
-  secret: mySecret #JWT¼Ó½âÃÜÊ¹ÓÃµÄÃÜÔ¿
-  expiration: 604800 #JWTµÄ³¬ÆÚÏŞÊ±¼ä(60*60*24)
-  tokenHead: Bearer #JWT¸ºÔØÖĞÄÃµ½¿ªÍ·
+  tokenHeader: Authorization #JWTå­˜å‚¨çš„è¯·æ±‚å¤´
+  secret: mySecret #JWTåŠ è§£å¯†ä½¿ç”¨çš„å¯†é’¥
+  expiration: 604800 #JWTçš„è¶…æœŸé™æ—¶é—´(60*60*24)
+  tokenHead: Bearer #JWTè´Ÿè½½ä¸­æ‹¿åˆ°å¼€å¤´
 
 mybatis:
   mapper-locations: classpath*:mapping/dialect/**/*.xml

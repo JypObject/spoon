@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spoon.iml" filepath="$PROJECT_DIR$/spoon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spoon-core/spoon-core.iml" filepath="$PROJECT_DIR$/spoon-core/spoon-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spoon-message/spoon-message.iml" filepath="$PROJECT_DIR$/spoon-message/spoon-message.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spoon-web/spoon-web.iml" filepath="$PROJECT_DIR$/spoon-web/spoon-web.iml" />
+    </modules>
+  </component>
+</project>
